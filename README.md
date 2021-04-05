@@ -6,6 +6,10 @@
 # 使い方
 
 ```
+go get -u github.com/s-kmmr/slice-remover
+```
+
+```
 import (
 	"fmt"
 
