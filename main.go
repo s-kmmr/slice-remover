@@ -9,7 +9,7 @@ import (
 func main() {
 	// usage
 	strarr := []string{"a", "b", "c", "d", "e"}
-	// 要素1番を削除
+	// 削除したい要素番号を指定（この例だと1番）
 	delarr, err := strslice.Remove(strarr, 1)
 	if err != nil {
 		fmt.Printf("%+v", err)
