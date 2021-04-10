@@ -10,7 +10,7 @@ import (
 func Test_Remove(t *testing.T) {
 	type args struct {
 		slice []string
-		idx   int
+		idx   uint
 	}
 	type testData struct {
 		name      string
@@ -22,7 +22,7 @@ func Test_Remove(t *testing.T) {
 
 	tests := []testData{
 		{
-			name: "remove a",
+			name: "idx is within the threshold",
 			args: args{
 				slice: []string{"a", "b", "c", "d", "e"},
 				idx:   0,
@@ -32,13 +32,23 @@ func Test_Remove(t *testing.T) {
 			isWantErr: false,
 		},
 		{
-			name: "slice bounds out of range idx",
+			name: "idx is within the threshold(end)",
 			args: args{
 				slice: []string{"a", "b", "c", "d", "e"},
-				idx:   100,
+				idx:   4,
+			},
+			want:      []string{"a", "b", "c", "d"},
+			wantErr:   nil,
+			isWantErr: false,
+		},
+		{
+			name: "idx is over the threshold(end)",
+			args: args{
+				slice: []string{"a", "b", "c", "d", "e"},
+				idx:   5,
 			},
 			want:      []string{"a", "b", "c", "d", "e"},
-			wantErr:   xerrors.New("slice bounds out of range [:100] with capacity 5"),
+			wantErr:   xerrors.New("slice bounds out of range [:5] with capacity 5"),
 			isWantErr: true,
 		},
 	}
